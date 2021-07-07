@@ -42,7 +42,7 @@ func fraction(a, b int) int {
 }
 
 func is_num(a string) bool {
-    if a <
+    if a < b
 } 
 
 
@@ -70,3 +70,8 @@ func (s *Stack)printStack(value int)(){
     }
 }
 
+
+type Stack struct {
+	arry [10]int
+	N int
+}
