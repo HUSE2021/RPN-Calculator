@@ -61,19 +61,21 @@ func (s *Stack) GetTop() int {
 }
 
 
+func (s *Stack)pop() (int,int){
+    var top int
+	var topNext int
+	top = s.arry[s.N]
+	s.N = s.N - 1
+	topNext = s.arry[s.N]
+	s.N = s.N - 1
+	return top, topNext
+} 
+
+
 func (s *Stack)push(value int)(){
 	s.N++
 	s.arry[s.N] = value
 }
-
-
-func (s *Stack)pop() (int,int){
-    var top int
-    var topNext int
-    top = arry[s.N--]
-    topNext = arry[s.N--]
-    return top,topNext
-} 
 
 
 func (s *Stack)printStack(value int)(){
