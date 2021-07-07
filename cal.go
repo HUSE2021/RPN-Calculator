@@ -44,3 +44,12 @@ func fraction(a, b int) int {
 func is_num(a string) bool {
     if a <
 } 
+
+
+func (s *Stack)push(value int)(){
+	for i = s.N-1; i > 0; i-- {
+        arry[i] = arry[i-1]
+    }
+    arry[0] = value
+    s.N ++
+}
