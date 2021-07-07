@@ -53,3 +53,9 @@ func (s *Stack)push(value int)(){
     arry[0] = value
     s.N ++
 }
+
+func (s *Stack)printStack(value int)(){
+    for i = 0; i < s.N; i++ {
+        fmt.Println(s.arry[i])
+    }
+}
