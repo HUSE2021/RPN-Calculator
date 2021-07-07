@@ -54,8 +54,19 @@ func (s *Stack)push(value int)(){
     s.N ++
 }
 
+
+func (s *Stack)pop() (int,int){
+    var top int
+    var topNext int
+    top = arry[s.N--]
+    topNext = arry[s.N--]
+    return top,topNext
+} 
+
+
 func (s *Stack)printStack(value int)(){
     for i = 0; i < s.N; i++ {
         fmt.Println(s.arry[i])
     }
 }
+
