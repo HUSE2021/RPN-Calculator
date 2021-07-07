@@ -2,7 +2,20 @@ package main
 
 import (
 	"fmt"
+    "strconv"
+	"strings"
+	"unicode"
 )
+
+type Stack struct {
+	arry [10]int
+	N int
+}
+
+type fraction struct {
+    
+}
+
 
 func main(){
     var in_string string
@@ -43,6 +56,33 @@ func main(){
 	fmt.Println("answer is ", answer)
 }
 
+func (s *Stack) GetTop() int {
+	return s.arry[s.N]
+}
+
+
+func (s *Stack)push(value int)(){
+	s.N++
+	s.arry[s.N] = value
+}
+
+
+func (s *Stack)pop() (int,int){
+    var top int
+    var topNext int
+    top = arry[s.N--]
+    topNext = arry[s.N--]
+    return top,topNext
+} 
+
+
+func (s *Stack)printStack(value int)(){
+    for i = 0; i < s.N; i++ {
+        fmt.Println(s.arry[i])
+    }
+}
+
+
 
 func add(a, b int) int {
 	return a + b
@@ -63,34 +103,3 @@ func fraction(a, b int) int {
 func is_num(a string) bool {
     if a < b
 } 
-
-
-func (s *Stack)push(value int)(){
-	for i = s.N-1; i > 0; i-- {
-        arry[i] = arry[i-1]
-    }
-    arry[0] = value
-    s.N ++
-}
-
-
-func (s *Stack)pop() (int,int){
-    var top int
-    var topNext int
-    top = arry[s.N--]
-    topNext = arry[s.N--]
-    return top,topNext
-} 
-
-
-func (s *Stack)printStack(value int)(){
-    for i = 0; i < s.N; i++ {
-        fmt.Println(s.arry[i])
-    }
-}
-
-
-type Stack struct {
-	arry [10]int
-	N int
-}
