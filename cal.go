@@ -16,7 +16,6 @@ type fraction struct {
     
 }
 
-
 func main(){
     var in_string string
 	var stack Stack
@@ -60,7 +59,6 @@ func (s *Stack) GetTop() int {
 	return s.arry[s.N]
 }
 
-
 func (s *Stack)pop() (int,int){
     var top int
 	var topNext int
@@ -71,20 +69,17 @@ func (s *Stack)pop() (int,int){
 	return top, topNext
 } 
 
-
 func (s *Stack)push(value int)(){
 	s.N++
 	s.arry[s.N] = value
 }
 
-
-func (s *Stack)printStack(value int)(){
-    for i = 0; i < s.N; i++ {
-        fmt.Println(s.arry[i])
-    }
+func (s *Stack) printStack() {
+	var i int
+	for i = 0; i < s.N; i++ {
+		fmt.Println(s.arry[i])
+	}
 }
-
-
 
 func add(a, b int) int {
 	return a + b
@@ -103,5 +98,5 @@ func fraction(a, b int) int {
 }
 
 func is_num(a string) bool {
-    if a < b
-} 
+	return unicode.IsDigit(rune(a[0]))
+}
