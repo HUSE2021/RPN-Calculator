@@ -5,22 +5,41 @@ import (
 )
 
 func main(){
-    var a string
-    
-    var answer int
-    
-	fmt.Scanln(&a)
+    var in_string string
+	var stack Stack
+	var i int
 
-    if(s == "+"){
-        answer = add(a, b)
-    }else if(s == "-"){
-        answer = sub(a, b)
-    }else if(s == "*"){
-        answer = multiple(a, b)
-    }else if(s == "/"){
-        answer = fraction(a, b)
-    }
-        
+	var answer int
+
+	stack.N = 0
+	in_string = "1 3 / 1 +"
+	s := strings.Split(in_string, " ")
+
+	for i = 0; i < len(s); i++ {
+		if is_num(s[i]) {
+			input_num, err := strconv.Atoi(s[i])
+			if err != nil {
+				fmt.Println("turn int err")
+				return
+			}
+			stack.push(input_num)
+		} else {
+			var ina int
+			var inb int
+			ina, inb = stack.pop()
+			if s[i] == "+" {
+				answer = add(inb, ina)
+			} else if s[i] == "-" {
+				answer = sub(inb, ina)
+			} else if s[i] == "*" {
+				answer = multiple(inb, ina)
+			} else if s[i] == "/" {
+				answer = fraction(inb, ina)
+			}
+			stack.push(answer)
+		}
+	}
+	answer = stack.GetTop()
 	fmt.Println("answer is ", answer)
 }
 
