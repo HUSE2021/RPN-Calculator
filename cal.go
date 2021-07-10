@@ -17,15 +17,13 @@ type Stack struct {
 	N    int
 }
 
-func main() {
-	var in_string string
+func calculate(in_string string)(Fraction) {
 	var stack Stack
 	var i int
-
 	var answer Fraction
 
 	stack.N = 0
-	in_string = "4 3 / 1 3 / + 2 * 4 - 2 +"
+
 	s := strings.Split(in_string, " ")
 
 	for i = 0; i < len(s); i++ {
@@ -54,23 +52,24 @@ func main() {
 		}
 	}
 	answer = stack.GetTop()
-	if answer.d == 1 {
-		fmt.Println("answer is ", answer.n)
-	} else if answer.d < 0 {
-		fmt.Println("answer is ", -answer.n, "/", -answer.d)
-	} else {
-		fmt.Println("answer is ", answer.n, "/", answer.d)
-	}
+// 	if answer.d == 1 {
+// 		fmt.Println("answer is ", answer.n)
+// 	} else if answer.d < 0 {
+// 		fmt.Println("answer is ", -answer.n, "/", -answer.d)
+// 	} else {
+// 		fmt.Println("answer is ", answer.n, "/", answer.d)
+// 	}
+    return answer
 
 }
 
-func (s *Stack) GetTop() int {
+func (s *Stack) GetTop() Fraction {
 	return s.arry[s.N]
 }
 
-func (s *Stack) pop() (int, int) {
-	var top int
-	var topNext int
+func (s *Stack) pop() (Fraction, Fraction) {
+	var top Fraction
+	var topNext Fraction
 	top = s.arry[s.N]
 	s.N = s.N - 1
 	topNext = s.arry[s.N]
@@ -78,7 +77,7 @@ func (s *Stack) pop() (int, int) {
 	return top, topNext
 }
 
-func (s *Stack) push(value int) {
+func (s *Stack) push(value Fraction) {
 	s.N++
 	s.arry[s.N] = value
 }
