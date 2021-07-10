@@ -2,42 +2,40 @@ package main
 
 import (
 	"fmt"
-    "strconv"
+	"strconv"
 	"strings"
 	"unicode"
 )
 
 type Stack struct {
 	arry [10]int
-	N int
+	N    int
 }
 
-type fraction struct {
-    
+type Stack struct {
+	arry [20]Fraction
+	N    int
 }
 
-func main(){
-    var in_string string
+func main() {
+	var in_string string
 	var stack Stack
 	var i int
 
-	var answer int
+	var answer Fraction
 
 	stack.N = 0
-	in_string = "1 3 / 1 +"
+	in_string = "4 3 / 1 3 / + 2 * 4 - 2 +"
 	s := strings.Split(in_string, " ")
 
 	for i = 0; i < len(s); i++ {
 		if is_num(s[i]) {
-			input_num, err := strconv.Atoi(s[i])
-			if err != nil {
-				fmt.Println("turn int err")
-				return
-			}
-			stack.push(input_num)
+			var input_fra Fraction
+			input_fra = strt2fra(s[i])
+			stack.push(input_fra)
 		} else {
-			var ina int
-			var inb int
+			var ina Fraction
+			var inb Fraction
 			ina, inb = stack.pop()
 			if s[i] == "+" {
 				answer = add(inb, ina)
@@ -48,28 +46,39 @@ func main(){
 			} else if s[i] == "/" {
 				answer = fraction(inb, ina)
 			}
+			var f int
+			f = gcd(answer.n, answer.d)
+			answer.n /= f
+			answer.d /= f
 			stack.push(answer)
 		}
 	}
 	answer = stack.GetTop()
-	fmt.Println("answer is ", answer)
+	if answer.d == 1 {
+		fmt.Println("answer is ", answer.n)
+	} else if answer.d < 0 {
+		fmt.Println("answer is ", -answer.n, "/", -answer.d)
+	} else {
+		fmt.Println("answer is ", answer.n, "/", answer.d)
+	}
+
 }
 
 func (s *Stack) GetTop() int {
 	return s.arry[s.N]
 }
 
-func (s *Stack)pop() (int,int){
-    var top int
+func (s *Stack) pop() (int, int) {
+	var top int
 	var topNext int
 	top = s.arry[s.N]
 	s.N = s.N - 1
 	topNext = s.arry[s.N]
 	s.N = s.N - 1
 	return top, topNext
-} 
+}
 
-func (s *Stack)push(value int)(){
+func (s *Stack) push(value int) {
 	s.N++
 	s.arry[s.N] = value
 }
@@ -85,7 +94,7 @@ func add(a, b int) int {
 	return a + b
 }
 
-func sub(a,b int) int {
+func sub(a, b int) int {
 	return a - b
 }
 
