@@ -115,20 +115,47 @@ func lcm(a, b int) int {
 	return (a * b) / hcf
 }
 
-func add(a, b int) int {
-	return a + b
+func add(a, b Fraction) Fraction {
+	var new_d int
+	var c Fraction
+
+	new_d = lcm(a.d, b.d)
+	a.n = a.n * new_d / a.d
+	b.n = b.n * new_d / b.d
+
+	c.d = new_d
+	c.n = a.n + b.n
+
+	return c
 }
 
-func sub(a, b int) int {
-	return a - b
+func sub(a, b Fraction) Fraction {
+	//a > b
+	var new_d int
+	var c Fraction
+
+	new_d = lcm(a.d, b.d)
+	a.n = a.n * new_d / a.d
+	b.n = b.n * new_d / b.d
+
+	c.d = new_d
+	c.n = a.n - b.n
+
+	return c
 }
 
-func multiple(a, b int) int {
-	return a * b
+func multiple(a, b Fraction) Fraction {
+	var y Fraction
+	y.n = a.n * b.n
+	y.d = a.d * b.d
+	return y
 }
 
-func fraction(a, b int) int {
-	return a / b
+func fraction(a, b Fraction) Fraction {
+	var y Fraction
+	y.n = a.n * b.d
+	y.d = a.d * b.n
+	return y
 }
 
 func is_num(a string) bool {
