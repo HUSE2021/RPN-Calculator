@@ -11,7 +11,7 @@ Operation: plus, minus, multiple, division
 The division is represented by a fraction    
 
 
-# Now Todo List
+# Last(v3.0) Todo List
      
 ![v2p1](https://github.com/HUSE2021/RPN-Calculator/blob/develop/todo/v3/v3p1.JPG)
 ![v2p2](https://github.com/HUSE2021/RPN-Calculator/blob/develop/todo/v3/v3p2.JPG)
